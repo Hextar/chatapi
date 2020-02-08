@@ -20,6 +20,8 @@ API = Api(APP)
 MA = Marshmallow(APP)
 SETTINGS = APP.config
 
+from app.models import *
+
 @APP.route("/")
 def index():
     """Root route.

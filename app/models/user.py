@@ -1,5 +1,6 @@
 from main import DB
 from flask_login import UserMixin
+from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(UserMixin, DB.Model):
@@ -12,7 +13,7 @@ class User(UserMixin, DB.Model):
     email = DB.Column(DB.String(40), unique=True, nullable=False)
     password = DB.Column(DB.String(200), primary_key=False, unique=False, nullable=False)
 
-    parents = relationship("ChatRoom", back_populates="users")
+    rooms = relationship("Room", secondary="ChatRoom")
 
     def set_password(self, password):
         """Create hashed password."""
