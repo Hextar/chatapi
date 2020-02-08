@@ -21,6 +21,7 @@ MA = Marshmallow(APP)
 SETTINGS = APP.config
 
 from app.models import *
+from app.api import *
 
 @APP.route("/")
 def index():
