@@ -1,0 +1,9 @@
+Flask
+Flask-RESTful
+flask-marshmallow
+webargs
+flask-cors
+pika
+flask-sqlalchemy
+flask-migrate
+marshmallow-sqlalchemy
