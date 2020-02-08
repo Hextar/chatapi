@@ -7,4 +7,6 @@ pika
 flask-sqlalchemy
 flask-migrate
 marshmallow-sqlalchemy
+flask_login
+flask_script
 python-dotenv

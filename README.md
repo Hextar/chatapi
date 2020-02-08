@@ -9,6 +9,13 @@
     (linux): source venv/bin/active (windows): source venv/Scripts/activate
 4. pip install -r requirements-dev.txt
 
+## Initialize project
+
+1. flask db init
+2. flask db migrate -m "Initial migration."
+3. Apply migrations
+    flask db upgrade
+
 ## Running on localhost
 
-python -m flask run
+1. flask run
