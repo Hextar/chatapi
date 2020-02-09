@@ -15,12 +15,19 @@ def message():
         Render home view
     """
     
-    print('************************************************')
+    pass
 
 @socketio.on('message')
 def message(msg):
     """
-        Render home view
+        Listen incoming messages from a client
+        Also indentify the stock intent to send back a quote as an answer from the Bot
+
+        parameter:
+            msg: {
+                room: '',
+                data: ''
+            }
     """
     stock_code = None
     data = msg.get('data')

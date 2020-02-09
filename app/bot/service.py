@@ -7,6 +7,9 @@ class BotService(object):
     api_url = 'https://stooq.com/q/l/'
 
     def quote_stock(self, stock_code):
+        """
+            Retrieve a stock quote for the stock intent
+        """
 
         stock_url = '{host}?f=sd2t2ohlcv&h&e=csv&s={stock_code}'.format(
             host=self.api_url,
