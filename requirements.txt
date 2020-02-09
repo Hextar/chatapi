@@ -5,5 +5,6 @@ webargs
 flask-cors
 pika
 flask-socketio
-flask_login
+flask-login
+Flask-WTF
 requests

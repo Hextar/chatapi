@@ -12,6 +12,7 @@ from flask_login import LoginManager
 logging.basicConfig(level=logging.DEBUG)
 
 APP = Flask(__name__)
+APP.secret_key = 'secret!$#'
 
 API = Api(APP)
 MA = Marshmallow(APP)
@@ -23,8 +24,10 @@ login_manager.init_app(APP)
 socketio = SocketIO(APP)
 
 from app.handlers.socket import *
-from app.handlers.chat_room import *
 from app.handlers.room import *
+from app.handlers.signin import *
+
+from app.loaders import load_user
 
 from app.api import BotResource
 

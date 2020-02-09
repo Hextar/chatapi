@@ -7,4 +7,5 @@ pika
 flask-socketio
 flask-login
 requests
+Flask-WTF
 python-dotenv
