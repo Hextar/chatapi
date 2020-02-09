@@ -19,6 +19,7 @@ MA = Marshmallow(APP)
 SETTINGS = APP.config
 
 login_manager = LoginManager()
+login_manager.login_view = "signin"
 login_manager.init_app(APP)
 
 socketio = SocketIO(APP)
@@ -26,6 +27,7 @@ socketio = SocketIO(APP)
 from app.handlers.socket import *
 from app.handlers.room import *
 from app.handlers.signin import *
+from app.handlers.logout import *
 
 from app.loaders import load_user
 
