@@ -4,8 +4,8 @@ flask-marshmallow
 webargs
 flask-cors
 pika
-flask-sqlalchemy
-flask-migrate
-marshmallow-sqlalchemy
-flask_login
-flask_script
+flask-socketio
+flask-login
+Flask-WTF
+requests
+pytest
