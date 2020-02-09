@@ -9,3 +9,5 @@ flask-migrate
 marshmallow-sqlalchemy
 flask_login
 flask_script
+flask-socketio
+gevent
