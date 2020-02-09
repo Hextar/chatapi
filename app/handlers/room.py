@@ -7,9 +7,6 @@ from main import APP
 @login_required
 def chat():
     """
-        Render home view
+        Render the chat view
     """
-    
-    print('************************************************')
-
     return render_template('chat.html')
