@@ -6,3 +6,4 @@ flask-cors
 pika
 flask-socketio
 flask_login
+requests

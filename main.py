@@ -12,8 +12,6 @@ from flask_login import LoginManager
 logging.basicConfig(level=logging.DEBUG)
 
 APP = Flask(__name__)
-APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
 
 API = Api(APP)
 MA = Marshmallow(APP)
