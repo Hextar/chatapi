@@ -11,4 +11,4 @@
 
 ## Running on localhost
 
-1. python main.py
+1. python main.py -> Then the server will be listening on localhost:5000

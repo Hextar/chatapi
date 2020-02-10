@@ -12,7 +12,7 @@ def client():
     with APP.test_client() as client:
         yield client
 
-def login(client, username):
+def test_login(client):
     return client.post('/login', data=dict(
-        username=username
+        username='handerson.contreras@gmail.com'
     ), follow_redirects=True)
