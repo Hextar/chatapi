@@ -3,6 +3,7 @@ import pika
 from main import APP, socketio
 
 from flask import render_template
+from flask_login import current_user
 from flask_socketio import send, emit
 
 from app.channel.room import RabbitRoom
@@ -26,11 +27,15 @@ def message(msg):
         parameter:
             msg: {
                 room: '',
-                data: ''
+                data: '',
+                sender: ''
             }
     """
     stock_code = None
     data = msg.get('data')
+    sender = current_user.email
+    msg['sender'] = sender
+
 
     if '/stock=' in data:
         stock = data.split('=')
@@ -42,7 +47,8 @@ def message(msg):
                 quote=quote
             )
             msg = {
-                'data': data
+                'data': data,
+                'sender': 'StockBot'
             }
     send(msg, broadcast=True)
 

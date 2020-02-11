@@ -6,7 +6,7 @@
     <input type="text" id="message" />
     <button type="button" id="sendMessage">send</button>
     <ul id="messages">
-
+        <li>Wellcome: {{ username }}</li>
     </ul>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,12 +15,10 @@
     <script type="text/javascript" charset="utf-8">
         var socket = io();
         socket.on('connect', function () {
-            socket.emit('message', {
-                data: 'User Connected'
-            });
+            
         });
         socket.on('message', function (msg) {
-            $('#messages').append('<li>' + msg.data + '</li>');
+            $('#messages').append('<li>' + msg.sender + ': '  + msg.data + '</li>');
         });
 
         $('#sendMessage').on('click', function(event){

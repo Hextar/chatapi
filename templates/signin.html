@@ -8,12 +8,14 @@
             <form method="POST" action="/">
                 {{ form.csrf_token }}
                 <label for="email">Email</label>
-                {{ form.email }}
+                {{ form.email }}<br/>
+                <label for="password">Password</label>
+                {{ form.password }}<br/>
                 <input type="submit" value="Signin">
             </form>
         {% else %}
             Your already Signin
-            <a href="/rooms">Go to Chat</a>
+            <a href="/chat">Go to Chat</a>
             or <a href="/logout">logout</a>
         {% endif %}
     </body>
