@@ -3,6 +3,7 @@ import pika
 from main import APP, socketio
 
 from flask import render_template
+from flask_login import current_user
 from flask_socketio import send, emit
 
 from app.channel.room import RabbitRoom
@@ -26,24 +27,35 @@ def message(msg):
         parameter:
             msg: {
                 room: '',
-                data: ''
+                data: '',
+                sender: ''
             }
     """
     stock_code = None
     data = msg.get('data')
+    sender = current_user.email
+    msg['sender'] = sender
 
     if '/stock=' in data:
         stock = data.split('=')
         stock_code = stock[1]
-        quote = BotService().quote_stock('aapl.us')
-        if quote != -1:
+        quote = BotService().quote_stock(stock_code)
+
+        if quote != -1 and quote != 'N/D':
             data = '{stock_code} quote is ${quote} per share'.format(
                 stock_code=stock_code.upper(),
                 quote=quote
             )
             msg = {
-                'data': data
+                'data': data,
+                'sender': 'StockBot'
             }
+        else:
+            msg = {
+                'data': 'Sorry I could not find a quote for stock code: %s' % stock_code,
+                'sender': 'StockBot'
+            }
+            
     send(msg, broadcast=True)
 
 

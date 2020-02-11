@@ -7,4 +7,4 @@ from wtforms import PasswordField, StringField
 
 class SigninEmailForm(FlaskForm):
     email = EmailField('Your Email', [DataRequired(), Email()])
-    # password = PasswordField('Password', [Length(min=6, max=35)])
+    password = PasswordField('Password', [Length(min=6, max=35)])

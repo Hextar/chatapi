@@ -9,3 +9,4 @@ flask-login
 Flask-WTF
 requests
 pytest
+flask_sqlalchemy
