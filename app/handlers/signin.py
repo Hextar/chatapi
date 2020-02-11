@@ -35,7 +35,7 @@ def signin():
 
         login_user(user, remember=True)
 
-        resp = make_response(redirect(url_for('chat')))
+        resp = make_response(redirect(url_for('chat'), code=307))
         
         return resp
 
