@@ -26,14 +26,16 @@ def signin():
             new_user = UserModel(email=email)
             new_user.set_password(password)
             DB.session.add(new_user)
-            DB.session.commit()           
+            DB.session.commit()
+
+        if new_user.check_password(password) is False:
+            form.password.errors.append('Wrong password or you forgot it.')
+            return render_template('signin.html', form=form)
+            
 
         login_user(user, remember=True)
 
-        resp = make_response(redirect(url_for('chat'), code=307))
-        resp.body = {
-            'email': email
-        }
+        resp = make_response(redirect(url_for('chat')))
         
         return resp
 

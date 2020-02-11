@@ -9,6 +9,4 @@ def chat():
     """
         Render the chat view
     """
-    email = request.form.get('email')
-
-    return render_template('chat.html', username=email)
+    return render_template('chat.html')
