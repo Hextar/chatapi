@@ -39,6 +39,8 @@ from app.loaders import load_user
 
 # sqlalchemy models
 from app.models.user import User
+from app.models.room import Room
+from app.models.message import Message
 
 # flask restful resources
 from app.api import BotResource

@@ -3,10 +3,21 @@
 <head></head>
 
 <body>
+    <h5>Welcome: {{ current_user.email }}</h5>
+    <hr>
+
     <input type="text" id="message" />
-    <button type="button" id="sendMessage">send</button>
+    <button type="button" id="sendMessage">send</button>    
+
     <ul id="messages">
-        <li>Wellcome: {{ current_user.email }}</li>
+        {% if messages | length > 0  %}
+            {% for message in messages %}
+                <li> 
+                    <strong>{{message.user.email}}: </strong> {{ message.data }}<br/>
+                    <small> Sent at {{message.posted_at }} </small>
+                </li>
+            {% endfor %}
+        {% endif %}
     </ul>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -18,17 +29,25 @@
             
         });
         socket.on('message', function (msg) {
-            $('#messages').append('<li>' + msg.sender + ': '  + msg.data + '</li>');
+            $('#messages').append('<li><strong>' + msg.sender + ':</strong> '  + msg.data + '</li><small>Seconds ago</small>');
         });
 
+        function sendMessage(){
+            if($('#message').val() !== '') {
+                socket.emit('message', {
+                    room: '',
+                    data: $('#message').val()
+                });
+                $('#message').val(' ');
+            } else{
+                alert('Empty Message');
+            }
+        }
+
         $('#sendMessage').on('click', function(event){
-            event.preventDefault;
-            socket.emit('message', {
-                room: '',
-                data: $('#message').val()
-            });
-            $('#message').val(' ');
-        })
+            event.preventDefault();
+            sendMessage();
+        });
     </script>
 </body>
 

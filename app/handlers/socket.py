@@ -31,10 +31,31 @@ def message(msg):
                 sender: ''
             }
     """
+    from app.models.message import Message
+    from app.models.room import Room
+    from app.models.user import User
+
+    from main import DB
+
     stock_code = None
     data = msg.get('data')
     sender = current_user.email
     msg['sender'] = sender
+
+    available_rooms = Room.query.all()
+    if len(available_rooms) > 0:
+        room = available_rooms[0]
+    else:
+        # create default room
+        room = Room(title='Default Room')
+        DB.session.add(room)
+        DB.session.commit()
+
+    user = User.query.filter_by(email=current_user.email).first()
+    if user and room:
+        message = Message(data=data, room=room, user=user)
+        DB.session.add(message)
+        DB.session.commit()
 
     if '/stock=' in data:
         stock = data.split('=')
@@ -55,6 +76,8 @@ def message(msg):
                 'data': 'Sorry I could not find a quote for stock code: %s' % stock_code,
                 'sender': 'StockBot'
             }
+    
+
             
     send(msg, broadcast=True)
 
