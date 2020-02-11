@@ -12,8 +12,8 @@ def test_socketio():
     assert socketio_test_client.is_connected()
 
     r = flask_test_client.post('/', data={
-        'email': 'handerson.contreras@gmail.com'})
-    assert r.status_code == 302
+        'email': 'hancoir@gmail.com', 'password': '123456'})
+    assert r.status_code == 307
 
     socketio_test_client = socketio.test_client(
         APP, flask_test_client=flask_test_client)
